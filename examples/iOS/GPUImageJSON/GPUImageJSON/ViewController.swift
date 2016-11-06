@@ -30,7 +30,7 @@ class ViewController: UIViewController {
             
             let sumie = "[{\"id\":\"camera\",\"outputs\":[\"dc85a745-f8fc-4a85-889d-874e20733675\",\"f2cf45e4-56a6-4fb9-a050-bb1bd3c86588\"]},{\"filter\":\"GPUImageLeftEyeFilter\",\"id\":\"left-eye\",\"inputs\":[\"cf8eb3f6-ecb9-4b5f-8263-923b6d52cf59\"]},{\"filter\":\"GPUImageRightEyeFilter\",\"id\":\"right-eye\",\"inputs\":[\"9aa42297-0f4c-4ab0-9555-a7d422add6ce\"]},{\"filter\":\"GPUImageBilateralFilter\",\"id\":\"f7342b0e-1a22-411c-b516-97a56713d830\",\"inputs\":[\"ecc96947-3c84-448a-8953-100674a4acb0\"],\"options\":{\"distanceNormalizationFactor\":8,\"texelSpacingMultiplier\":4},\"outputs\":[\"928cf280-18ec-456c-a950-b36cc0418fa8\",\"5e1b9f51-4142-4447-bbc1-cf3d91e62638\"]},{\"filter\":\"GPUImageBilateralFilter\",\"id\":\"ecc96947-3c84-448a-8953-100674a4acb0\",\"inputs\":[\"efa426fc-c6b5-4a36-ab83-77574de68da4\"],\"options\":{\"distanceNormalizationFactor\":8,\"texelSpacingMultiplier\":4},\"outputs\":[\"f7342b0e-1a22-411c-b516-97a56713d830\"]},{\"filter\":\"GPUImagePrewittEdgeDetectionFilter\",\"id\":\"928cf280-18ec-456c-a950-b36cc0418fa8\",\"inputs\":[\"f7342b0e-1a22-411c-b516-97a56713d830\"],\"options\":{\"edgeStrength\":1.1111},\"outputs\":[\"5e1b9f51-4142-4447-bbc1-cf3d91e62638\"]},{\"filter\":\"GPUImageExposureFilter\",\"id\":\"3dd0a38d-ee0b-43b2-bd81-6c3262a81fc0\",\"inputs\":[\"f72f89ed-684e-401a-b00e-4e580191fa71\"],\"options\":{\"exposure\":0.0268},\"outputs\":[\"cf8eb3f6-ecb9-4b5f-8263-923b6d52cf59\"]},{\"filter\":\"GPUImageExclusionBlendFilter\",\"id\":\"5e1b9f51-4142-4447-bbc1-cf3d91e62638\",\"inputs\":[\"f7342b0e-1a22-411c-b516-97a56713d830\",\"928cf280-18ec-456c-a950-b36cc0418fa8\"],\"outputs\":[\"f72f89ed-684e-401a-b00e-4e580191fa71\"]},{\"filter\":\"GPUImageHueFilter\",\"id\":\"cf8eb3f6-ecb9-4b5f-8263-923b6d52cf59\",\"inputs\":[\"3dd0a38d-ee0b-43b2-bd81-6c3262a81fc0\"],\"options\":{\"hue\":360},\"outputs\":[\"left-eye\",\"9aa42297-0f4c-4ab0-9555-a7d422add6ce\"]},{\"filter\":\"GPUImageBoxBlurFilter\",\"id\":\"dc85a745-f8fc-4a85-889d-874e20733675\",\"inputs\":[\"camera\"],\"options\":{\"blurRadiusInPixels\":2.0313},\"outputs\":[\"efa426fc-c6b5-4a36-ab83-77574de68da4\"]},{\"filter\":\"GPUImagePerlinNoiseFilter\",\"id\":\"f2cf45e4-56a6-4fb9-a050-bb1bd3c86588\",\"inputs\":[\"camera\"],\"options\":{\"scale\":199.4897},\"outputs\":[\"f72f89ed-684e-401a-b00e-4e580191fa71\"]},{\"filter\":\"GPUImageDissolveBlendFilter\",\"id\":\"f72f89ed-684e-401a-b00e-4e580191fa71\",\"inputs\":[\"5e1b9f51-4142-4447-bbc1-cf3d91e62638\",\"f2cf45e4-56a6-4fb9-a050-bb1bd3c86588\"],\"options\":{\"mix\":0.0385},\"outputs\":[\"3dd0a38d-ee0b-43b2-bd81-6c3262a81fc0\"]},{\"filter\":\"GPUImageFalseColorFilter\",\"id\":\"efa426fc-c6b5-4a36-ab83-77574de68da4\",\"inputs\":[\"dc85a745-f8fc-4a85-889d-874e20733675\"],\"options\":{\"firstColor\":[0.7229166666666667,0.7229166666666667,0.7229166666666667],\"secondColor\":[0.3145198169834813,0.311250946150519,0.3150735294117647]},\"outputs\":[\"ecc96947-3c84-448a-8953-100674a4acb0\"]},{\"filter\":\"Delay\",\"id\":\"9aa42297-0f4c-4ab0-9555-a7d422add6ce\",\"inputs\":[\"cf8eb3f6-ecb9-4b5f-8263-923b6d52cf59\"],\"options\":{\"framesToDelay\":2},\"outputs\":[\"right-eye\"]}]"
             
-            let filter = OperationGroup.init(jsonString: json)
+            let filter = OperationGroup.init(jsonString: sumie)
             camera --> filter --> renderView
             camera.startCapture()
         } catch {
@@ -100,6 +100,13 @@ extension OperationNode {
         self.operation = operation == nil ? ImageRelay() : operation
         
         // TODO: apply options
+        if let op = self.operation as? BasicOperation {
+            self.options?.forEach{ uniformName, uniformValue in
+                op.uniformSettings[ uniformName ] = Float("\(uniformValue)")
+                print( uniformName, uniformValue )
+            }
+        }
+        
     }
 }
 
