@@ -58,12 +58,30 @@ struct OperationNode {
     let outputs: [String]?
     let options: [String: Any]?
     
-//    let operation: AnyObject
+    let operation: Any?
+}
+
+struct OperationNodeList {
+    let nodes: [OperationNode]
+    
+    var input: ImageProcessingOperation? {
+        get {
+            return self.nodes.first?.operation as? ImageProcessingOperation
+        }
+    }
+    
+    var output: ImageProcessingOperation? {
+        get {
+            return self.get(id:"left-eye")?.operation as? ImageProcessingOperation
+        }
+    }
 }
 
 extension OperationNode {
-    init?(json: [String: Any]) {
-        guard let id = json["id"] as? String else { return nil }
+    init?(json: [String: Any]?) {
+        
+        guard let json = json,
+              let id = json["id"] as? String else { return nil }
         
         self.id = id
         self.inputs = json["inputs"] as? [String]
@@ -76,8 +94,48 @@ extension OperationNode {
         self.className = className
         
         let operation = Operations().get(name: className)
-        print( "OPERATION", operation )
+        self.operation = operation == nil ? ImageRelay() : operation
+        
+        // TODO: apply options
     }
+}
+
+extension OperationNodeList {
+    
+    init?(jsonArray: [Any]?) {
+        guard let jsonArray = jsonArray  else { return nil }
+        
+        var operationNodeList = [OperationNode]()
+        
+        jsonArray.forEach{ entry in
+            if let entry = entry as? [String: Any] {
+                if let operationNode = OperationNode(json: entry) {
+                    operationNodeList.append( operationNode )
+                }
+            }
+        }
+
+        self.nodes = operationNodeList
+        
+        operationNodeList.forEach { node in
+            node.outputs?.forEach{ outputId in
+                let outputNode = self.get(id: outputId)
+                let source = node.operation as? ImageProcessingOperation
+                
+                if let target = outputNode?.operation as? ImageProcessingOperation {
+                    source?.addTarget(target)
+                    if source != nil { print(source, "-->", target) }
+                }
+            }
+        }
+    }
+    
+    func get(id: String) -> OperationNode? {
+        return self.nodes.first{ node in
+            return node.id == id
+        }
+    }
+    
 }
 
 extension OperationGroup {
@@ -85,32 +143,20 @@ extension OperationGroup {
     convenience init(jsonString: String) {
         
         let data = try? JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!, options: [])
-        if let array = data as? [Any] {
-            
-            for item in array {
-                if let nodeJson = item as? [String: Any] {
-                    let operationNode = OperationNode(json: nodeJson)
-                    print(operationNode)
-                }
-
-            }
-        }
+        let operationNodeList = OperationNodeList(jsonArray: data as? [Any])
         
-        print("HELLO")
-        
-        let edge = PrewittEdgeDetection()
-        let operations = Operations()
-        
-        let op = operations.get(name: "BulgeDistortion") as! BasicOperation
         
         self.init()
         
-        self.configureGroup{ input, output in
-            input --> op --> edge --> output
+        self.configureGroup{ groupInput, groupOutput in
+            if let listInput = operationNodeList?.input,
+                let listOutput = operationNodeList?.output {
+                
+                groupInput.addTarget(listInput)
+                listOutput.addTarget(groupOutput)
+            }
         }
         
     }
     
 }
-
-//let blur: BoxBlur = operations.getByName(name: "BoxBlur")
