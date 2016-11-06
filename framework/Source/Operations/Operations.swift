@@ -4,7 +4,7 @@ public class Operations {
 
     public init(){ }
 
-    public func get(name: String?) -> AnyObject? {
+    public func get(name: String?) -> ImageProcessingOperation? {
         if name == nil { return nil }
         switch name! {
         //E.g, case "BoxBlur": return BoxBlur()
@@ -83,7 +83,6 @@ public class Operations {
         case "NormalBlend": return NormalBlend()
         case "OpacityAdjustment": return OpacityAdjustment()
         case "OpeningFilter": return OpeningFilter()
-        case "Operations": return Operations()
         case "OverlayBlend": return OverlayBlend()
         case "PinchDistortion": return PinchDistortion()
         case "Pixellate": return Pixellate()

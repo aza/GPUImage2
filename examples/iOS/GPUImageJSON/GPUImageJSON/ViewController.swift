@@ -61,7 +61,7 @@ struct OperationNode {
     let outputs: [String]?
     let options: [String: Any]?
     
-    let operation: Any?
+    let operation: ImageProcessingOperation?
 }
 
 struct OperationNodeList {
@@ -69,13 +69,13 @@ struct OperationNodeList {
     
     var input: ImageProcessingOperation? {
         get {
-            return self.nodes.first?.operation as? ImageProcessingOperation
+            return self.nodes.first?.operation
         }
     }
     
     var output: ImageProcessingOperation? {
         get {
-            return self.get(id:"left-eye")?.operation as? ImageProcessingOperation
+            return self.get(id:"left-eye")?.operation
         }
     }
 }
@@ -123,9 +123,9 @@ extension OperationNodeList {
         operationNodeList.forEach { node in
             node.outputs?.forEach{ outputId in
                 let outputNode = self.get(id: outputId)
-                let source = node.operation as? ImageProcessingOperation
+                let source = node.operation
                 
-                if let target = outputNode?.operation as? ImageProcessingOperation {
+                if let target = outputNode?.operation {
                     source?.addTarget(target)
                     if source != nil { print(source, "-->", target) }
                 }
