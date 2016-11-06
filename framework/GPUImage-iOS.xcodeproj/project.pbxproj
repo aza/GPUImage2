@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		236A720B1DCF079B0060B49C /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236A720A1DCF079B0060B49C /* Operations.swift */; };
 		BC6A13901CBB4F5600387779 /* ConvertedShaders_GLES.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6A138F1CBB4F5600387779 /* ConvertedShaders_GLES.swift */; };
 		BC6A13A01CBB503900387779 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6A13921CBB503900387779 /* Color.swift */; };
 		BC6A13A11CBB503900387779 /* FillMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6A13931CBB503900387779 /* FillMode.swift */; };
@@ -181,6 +182,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		236A720A1DCF079B0060B49C /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operations.swift; path = Source/Operations/Operations.swift; sourceTree = "<group>"; };
 		BC6A138F1CBB4F5600387779 /* ConvertedShaders_GLES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConvertedShaders_GLES.swift; path = Source/Operations/Shaders/ConvertedShaders_GLES.swift; sourceTree = SOURCE_ROOT; };
 		BC6A13921CBB503900387779 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Source/Color.swift; sourceTree = "<group>"; };
 		BC6A13931CBB503900387779 /* FillMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FillMode.swift; path = Source/FillMode.swift; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 		BCE316F01CA0E63D00323D5B /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				236A720A1DCF079B0060B49C /* Operations.swift */,
 				BCE317011CA0E6C300323D5B /* BasicOperation.swift */,
 				BCFB05C71CBF1E84009B2333 /* OneInput.vsh */,
 				BCFB05C91CBF1E84009B2333 /* TwoInput.vsh */,
@@ -1067,6 +1070,7 @@
 				BCFB07461CBF2BC1009B2333 /* StretchDistortion.swift in Sources */,
 				BCFB06501CBF219D009B2333 /* ColorInversion.swift in Sources */,
 				BC6A13A41CBB503900387779 /* Matrix.swift in Sources */,
+				236A720B1DCF079B0060B49C /* Operations.swift in Sources */,
 				BCFB074A1CBF2BC1009B2333 /* ToonFilter.swift in Sources */,
 				BC6A13901CBB4F5600387779 /* ConvertedShaders_GLES.swift in Sources */,
 				BCFB07451CBF2BC1009B2333 /* SphereRefraction.swift in Sources */,
