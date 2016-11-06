@@ -7,12 +7,16 @@
 //
 
 import UIKit
-
+import GPUImage
 class ViewController: UIViewController {
-
+    
+    var renderView: RenderView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        // renderView = RenderView.init(frame: <#T##CGRect#>)
     }
 
     override func didReceiveMemoryWarning() {
