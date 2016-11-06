@@ -8,15 +8,33 @@
 
 import UIKit
 import GPUImage
+import AVFoundation
+
 class ViewController: UIViewController {
     
-    var renderView: RenderView?
+    var renderView: RenderView!
+    var camera: Camera!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let screenSize: CGRect = UIScreen.main.bounds
-        // renderView = RenderView.init(frame: <#T##CGRect#>)
+        renderView = RenderView.init(frame: screenSize)
+        
+        self.view.addSubview(renderView)
+        
+        do {
+            camera = try Camera(sessionPreset: AVCaptureSessionPreset1280x720)
+            camera --> renderView
+            camera.startCapture()
+        } catch {
+            fatalError("Failure starting camera.")
+        }
+        
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 
     override func didReceiveMemoryWarning() {
