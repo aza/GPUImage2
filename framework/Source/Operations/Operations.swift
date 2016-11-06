@@ -4,8 +4,9 @@ public class Operations {
 
     public init(){ }
 
-    public func get(name: String) -> AnyObject? {
-        switch name {
+    public func get(name: String?) -> AnyObject? {
+        if name == nil { return nil }
+        switch name! {
         //E.g, case "BoxBlur": return BoxBlur()
         case "AdaptiveThreshold": return AdaptiveThreshold()
         case "AddBlend": return AddBlend()
