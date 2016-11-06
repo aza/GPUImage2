@@ -25,7 +25,9 @@ class ViewController: UIViewController {
         
         do {
             camera = try Camera(sessionPreset: AVCaptureSessionPreset1280x720)
-            camera --> renderView
+            
+            let filter = OperationGroup.init(json: "hello")
+            camera --> filter --> renderView
             camera.startCapture()
         } catch {
             fatalError("Failure starting camera.")
@@ -42,6 +44,25 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
 }
 
+extension OperationGroup {
+    
+    convenience init(json: String) {
+        
+        let edge = PrewittEdgeDetection()
+        let operations = GPUImageOperations()
+        
+        let blur: BasicOperation = operations.getByName(name: "PrewittEdgeDetection")!
+        
+        self.init()
+        
+        self.configureGroup{ input, output in
+            input --> blur --> output
+        }
+        
+    }
+    
+}
+
+//let blur: BoxBlur = operations.getByName(name: "BoxBlur")
