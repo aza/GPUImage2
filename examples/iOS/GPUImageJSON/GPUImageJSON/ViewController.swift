@@ -51,14 +51,14 @@ extension OperationGroup {
     convenience init(json: String) {
         
         let edge = PrewittEdgeDetection()
-        let operations = GPUImageOperations()
+        let operations = Operations()
         
-        let blur: BasicOperation = operations.getByName(name: "PrewittEdgeDetection")!
+        let op = operations.get(name: "BulgeDistortion") as! BasicOperation
         
         self.init()
         
         self.configureGroup{ input, output in
-            input --> blur --> output
+            input --> op --> edge --> output
         }
         
     }
