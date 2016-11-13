@@ -4,7 +4,8 @@ var FilterNameMap = {
   Hue: 'HueAdjustment',
   Gamma: 'GammaAdjustment',
   LowPass: 'LowPassFilter',
-  RGB: 'RGBAdjustment'
+  RGB: 'RGBAdjustment',
+  ColorInvert: 'ColorInversion'
 }
 
 
