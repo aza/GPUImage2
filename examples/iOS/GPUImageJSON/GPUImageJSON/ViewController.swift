@@ -104,8 +104,6 @@ extension OperationNode {
         
         if operation == nil { print("  UNKNOWN FILTER:", className ) }
         
-        // TODO: apply options
-        
         self.options?.forEach{ uniformName, uniformValue in
             
             var operation: AnyObject?
@@ -119,14 +117,12 @@ extension OperationNode {
             
             
             if operation != nil {
-                
                 if let uniformValue = uniformValue as? Float {
-                    
-//                    print( ">", uniformName, uniformValue )
+                    print( ">", uniformName, uniformValue )
                     let opMirror = Mirror.init(reflecting: operation!)
                     opMirror.children.forEach{ key, _ in
                         if key == uniformName {
-//                            print( " ", uniformName, "->", uniformValue )
+                            print( " ", uniformName, "->", uniformValue )
                             operation?.setValue( uniformValue, forKey: uniformName )
                             didFindUniform = true
                         }
@@ -143,12 +139,9 @@ extension OperationNode {
                     let b = uniformValueArray?[2] as? Float {
                     basicOperation.uniformSettings[ uniformName ] = Color(red: r, green: g, blue: b)
                 }
-
             }
-            
         }
     }
-    
 }
 
 extension OperationNodeList {
@@ -175,7 +168,6 @@ extension OperationNodeList {
                 
                 if let target = outputNode?.operation {
                     source?.addTarget(target)
-                    if source != nil { /*print(source, "-->", target)*/ }
                 }
             }
         }
