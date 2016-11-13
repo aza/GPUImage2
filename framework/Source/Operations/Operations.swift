@@ -36,6 +36,7 @@ public class Operations {
         case "Crop": return Crop()
         case "Crosshatch": return Crosshatch()
         case "DarkenBlend": return DarkenBlend()
+        case "Delay": return Delay()
         case "DifferenceBlend": return DifferenceBlend()
         case "Dilation": return Dilation()
         case "DissolveBlend": return DissolveBlend()

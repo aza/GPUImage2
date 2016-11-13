@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23681B961DD830850080D229 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23681B951DD830850080D229 /* Delay.swift */; };
 		236A720B1DCF079B0060B49C /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236A720A1DCF079B0060B49C /* Operations.swift */; };
 		BC6A13901CBB4F5600387779 /* ConvertedShaders_GLES.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6A138F1CBB4F5600387779 /* ConvertedShaders_GLES.swift */; };
 		BC6A13A01CBB503900387779 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6A13921CBB503900387779 /* Color.swift */; };
@@ -182,6 +183,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23681B951DD830850080D229 /* Delay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Delay.swift; path = Source/Operations/Delay.swift; sourceTree = "<group>"; };
 		236A720A1DCF079B0060B49C /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operations.swift; path = Source/Operations/Operations.swift; sourceTree = "<group>"; };
 		BC6A138F1CBB4F5600387779 /* ConvertedShaders_GLES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConvertedShaders_GLES.swift; path = Source/Operations/Shaders/ConvertedShaders_GLES.swift; sourceTree = SOURCE_ROOT; };
 		BC6A13921CBB503900387779 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Source/Color.swift; sourceTree = "<group>"; };
@@ -503,6 +505,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23681B931DD82FE40080D229 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				23681B951DD830850080D229 /* Delay.swift */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
 		BCD1B11B1C66A262001F2BDC = {
 			isa = PBXGroup;
 			children = (
@@ -631,6 +641,7 @@
 				BCFB05CD1CBF1F0A009B2333 /* NearbyTexelSampling.vsh */,
 				BC6A139E1CBB503900387779 /* TwoStageOperation.swift */,
 				BC6A13971CBB503900387779 /* OperationGroup.swift */,
+				23681B931DD82FE40080D229 /* Custom */,
 				BCE316F11CA0E65500323D5B /* Color processing */,
 				BCFB05D11CBF1F23009B2333 /* Image processing */,
 				BCFB05D21CBF1F2F009B2333 /* Effects */,
@@ -1137,6 +1148,7 @@
 				BCFB06C11CBF28B4009B2333 /* Erosion.swift in Sources */,
 				BCFB06511CBF219D009B2333 /* HueAdjustment.swift in Sources */,
 				BCFB07491CBF2BC1009B2333 /* TiltShift.swift in Sources */,
+				23681B961DD830850080D229 /* Delay.swift in Sources */,
 				BCFB06AF1CBF284A009B2333 /* PrewittEdgeDetection.swift in Sources */,
 				BCA4E2351CC313AA007B51BA /* Solarize.swift in Sources */,
 				BCFB07301CBF2B94009B2333 /* PinchDistortion.swift in Sources */,
