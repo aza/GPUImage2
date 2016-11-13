@@ -34,7 +34,9 @@ class ViewController: UIViewController {
             
             let skittle = "[{\"id\":\"camera\",\"outputs\":[\"77af6e66-c825-41b1-8cd8-b93cbcebe013\",\"4dce357e-0423-4d87-9db5-966589fe6809\",\"f4f7cb1b-c1db-484e-b052-f8fe9dfcd831\"]},{\"filter\":\"GammaAdjustment\",\"id\":\"77af6e66-c825-41b1-8cd8-b93cbcebe013\",\"inputs\":[\"camera\"],\"options\":{\"gamma\":0.26},\"outputs\":[\"77fd10c4-a8a7-455d-bc56-4c32db979eb3\"]},{\"filter\":\"PrewittEdgeDetection\",\"id\":\"77fd10c4-a8a7-455d-bc56-4c32db979eb3\",\"inputs\":[\"77af6e66-c825-41b1-8cd8-b93cbcebe013\"],\"options\":{\"edgeStrength\":1},\"outputs\":[\"1bfe6569-f6c4-416e-a1dc-99a4ca2f4f85\"]},{\"filter\":\"LowPassFilter\",\"id\":\"1bfe6569-f6c4-416e-a1dc-99a4ca2f4f85\",\"inputs\":[\"77fd10c4-a8a7-455d-bc56-4c32db979eb3\"],\"options\":{\"filterStrength\":0.63},\"outputs\":[\"d7389dcc-2263-41ba-93a3-0a6f22b7389e\"]},{\"filter\":\"RGBAdjustment\",\"id\":\"d7389dcc-2263-41ba-93a3-0a6f22b7389e\",\"inputs\":[\"1bfe6569-f6c4-416e-a1dc-99a4ca2f4f85\"],\"options\":{\"blue\":1,\"green\":1,\"red\":2.82},\"outputs\":[\"ee4c2bfd-86a4-42ec-acec-44eb0cb12f1a\"]},{\"filter\":\"PrewittEdgeDetection\",\"id\":\"4dce357e-0423-4d87-9db5-966589fe6809\",\"inputs\":[\"camera\"],\"options\":{\"edgeStrength\":1},\"outputs\":[\"bce4595f-d2e0-44c5-883a-2c30f0320b29\"]},{\"filter\":\"LowPassFilter\",\"id\":\"bce4595f-d2e0-44c5-883a-2c30f0320b29\",\"inputs\":[\"4dce357e-0423-4d87-9db5-966589fe6809\"],\"options\":{\"filterStrength\":0.3},\"outputs\":[\"48e14f24-78fe-414d-88d3-858e50df5bca\"]},{\"filter\":\"RGBAdjustment\",\"id\":\"48e14f24-78fe-414d-88d3-858e50df5bca\",\"inputs\":[\"bce4595f-d2e0-44c5-883a-2c30f0320b29\"],\"options\":{\"blue\":1,\"green\":2.48,\"red\":1},\"outputs\":[\"ee4c2bfd-86a4-42ec-acec-44eb0cb12f1a\"]},{\"filter\":\"LightenBlend\",\"id\":\"ee4c2bfd-86a4-42ec-acec-44eb0cb12f1a\",\"inputs\":[\"d7389dcc-2263-41ba-93a3-0a6f22b7389e\",\"48e14f24-78fe-414d-88d3-858e50df5bca\"],\"outputs\":[\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\"]},{\"filter\":\"GammaAdjustment\",\"id\":\"f4f7cb1b-c1db-484e-b052-f8fe9dfcd831\",\"inputs\":[\"camera\"],\"options\":{\"gamma\":2.19},\"outputs\":[\"69e8ab7b-3b55-42d8-b84d-b471364a92e6\"]},{\"filter\":\"PrewittEdgeDetection\",\"id\":\"69e8ab7b-3b55-42d8-b84d-b471364a92e6\",\"inputs\":[\"f4f7cb1b-c1db-484e-b052-f8fe9dfcd831\"],\"options\":{\"edgeStrength\":1},\"outputs\":[\"8366f004-9900-481f-9fd3-d3e873ce6286\"]},{\"filter\":\"LowPassFilter\",\"id\":\"8366f004-9900-481f-9fd3-d3e873ce6286\",\"inputs\":[\"69e8ab7b-3b55-42d8-b84d-b471364a92e6\"],\"options\":{\"filterStrength\":0.55},\"outputs\":[\"2afd0226-7f6c-48e4-a26f-08b563451b75\"]},{\"filter\":\"RGBAdjustment\",\"id\":\"2afd0226-7f6c-48e4-a26f-08b563451b75\",\"inputs\":[\"8366f004-9900-481f-9fd3-d3e873ce6286\"],\"options\":{\"blue\":2.91,\"green\":1,\"red\":1},\"outputs\":[\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\"]},{\"filter\":\"LightenBlend\",\"id\":\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\",\"inputs\":[\"ee4c2bfd-86a4-42ec-acec-44eb0cb12f1a\",\"2afd0226-7f6c-48e4-a26f-08b563451b75\"],\"outputs\":[\"left-eye\",\"abf23614-52c6-4ac9-a73b-a82dbebae411\"]},{\"filter\":\"LeftEye\",\"id\":\"left-eye\",\"inputs\":[\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\"]},{\"filter\":\"RightEye\",\"id\":\"right-eye\",\"inputs\":[\"abf23614-52c6-4ac9-a73b-a82dbebae411\"]},{\"filter\":\"Delay\",\"id\":\"abf23614-52c6-4ac9-a73b-a82dbebae411\",\"inputs\":[\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\"],\"options\":{\"framesToDelay\":3.0512},\"outputs\":[\"right-eye\"]}]"
             
-            let filter = OperationGroup.init(withJson: borderlands)
+            let test = "[{\"id\":\"camera\",\"outputs\":[\"f34a6962-4e75-46f1-bd02-e5471253b6ce\",\"46d65801-f08a-4c73-b8ca-6e7d0edbcd88\"]},{\"filter\":\"LeftEye\",\"id\":\"left-eye\",\"inputs\":[\"14687d28-6a53-4dda-be4f-054338306f32\"]},{\"filter\":\"RightEye\",\"id\":\"right-eye\",\"inputs\":[\"908fdb32-75bf-4716-8601-08801453e034\"]},{\"filter\":\"BilateralBlur\",\"id\":\"f7342b0e-1a22-411c-b516-97a56713d830\",\"inputs\":[\"f34a6962-4e75-46f1-bd02-e5471253b6ce\"],\"options\":{\"distanceNormalizationFactor\":8,\"texelSpacingMultiplier\":4},\"outputs\":[\"6a592d31-2a3c-48ae-a605-4c380d03af2d\"]},{\"filter\":\"BilateralBlur\",\"id\":\"f34a6962-4e75-46f1-bd02-e5471253b6ce\",\"inputs\":[\"camera\"],\"options\":{\"distanceNormalizationFactor\":8,\"texelSpacingMultiplier\":4},\"outputs\":[\"f7342b0e-1a22-411c-b516-97a56713d830\"]},{\"filter\":\"DivideBlend\",\"id\":\"6a592d31-2a3c-48ae-a605-4c380d03af2d\",\"inputs\":[\"f7342b0e-1a22-411c-b516-97a56713d830\",\"46d65801-f08a-4c73-b8ca-6e7d0edbcd88\"],\"outputs\":[\"e19e5cde-f912-4676-9f32-30865a846c77\"]},{\"filter\":\"ColorInversion\",\"id\":\"7f06f49d-7a83-4dfb-8a7e-044c784e705f\",\"inputs\":[\"e19e5cde-f912-4676-9f32-30865a846c77\"],\"outputs\":[\"fcac2260-58c6-4636-ac7d-bf7bf7579800\"]},{\"filter\":\"ExposureAdjustment\",\"id\":\"e19e5cde-f912-4676-9f32-30865a846c77\",\"inputs\":[\"6a592d31-2a3c-48ae-a605-4c380d03af2d\"],\"options\":{\"exposure\":-0.0667},\"outputs\":[\"7f06f49d-7a83-4dfb-8a7e-044c784e705f\"]},{\"filter\":\"SaturationAdjustment\",\"id\":\"14687d28-6a53-4dda-be4f-054338306f32\",\"inputs\":[\"1bfbf5a1-be19-4999-8a31-47ffd0a985b5\"],\"options\":{\"saturation\":1.831},\"outputs\":[\"left-eye\",\"908fdb32-75bf-4716-8601-08801453e034\"]},{\"filter\":\"SaturationAdjustment\",\"id\":\"fcac2260-58c6-4636-ac7d-bf7bf7579800\",\"inputs\":[\"7f06f49d-7a83-4dfb-8a7e-044c784e705f\"],\"options\":{\"saturation\":1.8228},\"outputs\":[\"2eb5c5a1-f229-422f-b036-57f4ada0417d\"]},{\"filter\":\"LowPassFilter\",\"id\":\"1bfbf5a1-be19-4999-8a31-47ffd0a985b5\",\"inputs\":[\"63184475-3c04-4aa6-95e8-c2b30e810791\"],\"options\":{\"strength\":0.1034},\"outputs\":[\"14687d28-6a53-4dda-be4f-054338306f32\"]},{\"filter\":\"ZoomBlur\",\"id\":\"46d65801-f08a-4c73-b8ca-6e7d0edbcd88\",\"inputs\":[\"camera\"],\"options\":{\"blurSize\":0.4032},\"outputs\":[\"6a592d31-2a3c-48ae-a605-4c380d03af2d\"]},{\"filter\":\"LowPassFilter\",\"id\":\"63184475-3c04-4aa6-95e8-c2b30e810791\",\"inputs\":[\"2eb5c5a1-f229-422f-b036-57f4ada0417d\"],\"options\":{\"strength\":0.1034},\"outputs\":[\"1bfbf5a1-be19-4999-8a31-47ffd0a985b5\"]},{\"filter\":\"LowPassFilter\",\"id\":\"2eb5c5a1-f229-422f-b036-57f4ada0417d\",\"inputs\":[\"fcac2260-58c6-4636-ac7d-bf7bf7579800\"],\"options\":{\"strength\":0.1207},\"outputs\":[\"63184475-3c04-4aa6-95e8-c2b30e810791\"]},{\"filter\":\"Delay\",\"id\":\"908fdb32-75bf-4716-8601-08801453e034\",\"inputs\":[\"14687d28-6a53-4dda-be4f-054338306f32\"],\"options\":{\"framesToDelay\":4.2661},\"outputs\":[\"right-eye\"]}]"
+            
+            let filter = OperationGroup.init(withJson: test)
             camera --> filter --> renderView
             camera.startCapture()
             
@@ -47,7 +49,6 @@ class ViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool {
         return true
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,18 +102,18 @@ extension OperationNode {
         let operation = Operations().get(name: className)
         self.operation = operation == nil ? ImageRelay() : operation
         
-        if operation == nil { print("Unknown className", className ) }
+        if operation == nil { print("-----> UNKNOWN FILTER:", className ) }
         
         // TODO: apply options
         
         self.options?.forEach{ uniformName, uniformValue in
+            
             if let op = self.operation as? BasicOperation {
                 
                 let uniforms = op.uniformSettings.uniformValues
                 let actualUniformName = findClosestKeyTo(key: uniformName, in: uniforms)
 
                 op.uniformSettings[ actualUniformName ] = uniformValue as? Float
-                
                 
                 let uniformValueArray = uniformValue as? [Any]
 
@@ -122,15 +123,37 @@ extension OperationNode {
 
                 print( className! + ":" + actualUniformName, uniformValue )
             }
+            
+            else if let op = self.operation as? OperationGroup {
+                
+                var didFindUniform = false
+                let opMirror = Mirror.init(reflecting: op)
+                opMirror.children.forEach{ key, _ in
+                    if( key == uniformName ) {
+                        op.setValue( uniformValue, forKey: uniformName )
+                        didFindUniform = true
+                    }
+                }
+                
+                didFindUniform ?
+                    print( className! + ":" + uniformName, uniformValue ) :
+                    print( "-----> UNKNOWN UNIFORM:", uniformName)
+                
+            }
+            
+            else {
+                print("-----> UNKNOWN FILTER:", className )
+            }
+            
         }
-        print()
-        
     }
     
     private func findClosestKeyTo(key inputKey: String, in dictionary: [String: Any]) -> String {
+        
         for (key, _) in dictionary {
             if key.contains(inputKey) { return key }
         }
+        print("-----> UNKNOWN UNIFORM:", inputKey)
         
         return inputKey
     }
