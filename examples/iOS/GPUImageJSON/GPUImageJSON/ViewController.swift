@@ -109,17 +109,6 @@ extension OperationNode {
                 let actualUniformName = findClosestKeyTo(key: uniformName, in: uniforms)
 
                 op.uniformSettings[ actualUniformName ] = uniformValue as? Float
-                
-                
-//                let uniformValueArray = uniformValue as? [Any]
-//
-//                if let r = uniformValueArray?[0] as? Float, let g = uniformValueArray?[1] as? Float, let b = uniformValueArray?[2] as? Float {
-//                    let rgb = Color(red: r, green: g, blue: b)
-//                    print("um")
-//                    
-//                    op.uniformSettings[ uniformName ] = rgb
-//                    
-//                }
 
                 print( className! + ":" + actualUniformName, uniformValue )
             }
