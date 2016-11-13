@@ -2,6 +2,8 @@ var FilterNameMap = {
   Bilateral: 'BilateralBlur',
   ColorInvert: 'ColorInversion',
   LowPass: 'LowPassFilter',
+  HighPass: 'HighPassFilter',
+  Swirl: 'SwirlDistortion',
 
   Brightness: 'BrightnessAdjustment',
   Contrast: 'ContrastAdjustment',
