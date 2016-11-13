@@ -36,6 +36,12 @@ class FilterNode {
       _(json.options).forEach( (value, key ) => {
         key = key.replace(/filter[A-Z]/, pre => { return pre[pre.length-1].toLowerCase() })
         options[key] = value
+
+        // BilateralBlur no longer has this option
+        if( name == 'BilateralBlur' && key == 'texelSpacingMultiplier' ){
+          delete options[key]
+        }
+
       })
 
       json.options = options
