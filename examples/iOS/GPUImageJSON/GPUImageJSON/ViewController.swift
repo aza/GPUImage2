@@ -32,7 +32,7 @@ class ViewController: UIViewController {
             
             let skittle = "[{\"id\":\"camera\",\"outputs\":[\"77af6e66-c825-41b1-8cd8-b93cbcebe013\",\"4dce357e-0423-4d87-9db5-966589fe6809\",\"f4f7cb1b-c1db-484e-b052-f8fe9dfcd831\"]},{\"filter\":\"GammaAdjustment\",\"id\":\"77af6e66-c825-41b1-8cd8-b93cbcebe013\",\"inputs\":[\"camera\"],\"options\":{\"gamma\":0.26},\"outputs\":[\"77fd10c4-a8a7-455d-bc56-4c32db979eb3\"]},{\"filter\":\"PrewittEdgeDetection\",\"id\":\"77fd10c4-a8a7-455d-bc56-4c32db979eb3\",\"inputs\":[\"77af6e66-c825-41b1-8cd8-b93cbcebe013\"],\"options\":{\"edgeStrength\":1},\"outputs\":[\"1bfe6569-f6c4-416e-a1dc-99a4ca2f4f85\"]},{\"filter\":\"LowPassFilter\",\"id\":\"1bfe6569-f6c4-416e-a1dc-99a4ca2f4f85\",\"inputs\":[\"77fd10c4-a8a7-455d-bc56-4c32db979eb3\"],\"options\":{\"filterStrength\":0.63},\"outputs\":[\"d7389dcc-2263-41ba-93a3-0a6f22b7389e\"]},{\"filter\":\"RGBAdjustment\",\"id\":\"d7389dcc-2263-41ba-93a3-0a6f22b7389e\",\"inputs\":[\"1bfe6569-f6c4-416e-a1dc-99a4ca2f4f85\"],\"options\":{\"blue\":1,\"green\":1,\"red\":2.82},\"outputs\":[\"ee4c2bfd-86a4-42ec-acec-44eb0cb12f1a\"]},{\"filter\":\"PrewittEdgeDetection\",\"id\":\"4dce357e-0423-4d87-9db5-966589fe6809\",\"inputs\":[\"camera\"],\"options\":{\"edgeStrength\":1},\"outputs\":[\"bce4595f-d2e0-44c5-883a-2c30f0320b29\"]},{\"filter\":\"LowPassFilter\",\"id\":\"bce4595f-d2e0-44c5-883a-2c30f0320b29\",\"inputs\":[\"4dce357e-0423-4d87-9db5-966589fe6809\"],\"options\":{\"filterStrength\":0.3},\"outputs\":[\"48e14f24-78fe-414d-88d3-858e50df5bca\"]},{\"filter\":\"RGBAdjustment\",\"id\":\"48e14f24-78fe-414d-88d3-858e50df5bca\",\"inputs\":[\"bce4595f-d2e0-44c5-883a-2c30f0320b29\"],\"options\":{\"blue\":1,\"green\":2.48,\"red\":1},\"outputs\":[\"ee4c2bfd-86a4-42ec-acec-44eb0cb12f1a\"]},{\"filter\":\"LightenBlend\",\"id\":\"ee4c2bfd-86a4-42ec-acec-44eb0cb12f1a\",\"inputs\":[\"d7389dcc-2263-41ba-93a3-0a6f22b7389e\",\"48e14f24-78fe-414d-88d3-858e50df5bca\"],\"outputs\":[\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\"]},{\"filter\":\"GammaAdjustment\",\"id\":\"f4f7cb1b-c1db-484e-b052-f8fe9dfcd831\",\"inputs\":[\"camera\"],\"options\":{\"gamma\":2.19},\"outputs\":[\"69e8ab7b-3b55-42d8-b84d-b471364a92e6\"]},{\"filter\":\"PrewittEdgeDetection\",\"id\":\"69e8ab7b-3b55-42d8-b84d-b471364a92e6\",\"inputs\":[\"f4f7cb1b-c1db-484e-b052-f8fe9dfcd831\"],\"options\":{\"edgeStrength\":1},\"outputs\":[\"8366f004-9900-481f-9fd3-d3e873ce6286\"]},{\"filter\":\"LowPassFilter\",\"id\":\"8366f004-9900-481f-9fd3-d3e873ce6286\",\"inputs\":[\"69e8ab7b-3b55-42d8-b84d-b471364a92e6\"],\"options\":{\"filterStrength\":0.55},\"outputs\":[\"2afd0226-7f6c-48e4-a26f-08b563451b75\"]},{\"filter\":\"RGBAdjustment\",\"id\":\"2afd0226-7f6c-48e4-a26f-08b563451b75\",\"inputs\":[\"8366f004-9900-481f-9fd3-d3e873ce6286\"],\"options\":{\"blue\":2.91,\"green\":1,\"red\":1},\"outputs\":[\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\"]},{\"filter\":\"LightenBlend\",\"id\":\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\",\"inputs\":[\"ee4c2bfd-86a4-42ec-acec-44eb0cb12f1a\",\"2afd0226-7f6c-48e4-a26f-08b563451b75\"],\"outputs\":[\"left-eye\",\"abf23614-52c6-4ac9-a73b-a82dbebae411\"]},{\"filter\":\"LeftEye\",\"id\":\"left-eye\",\"inputs\":[\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\"]},{\"filter\":\"RightEye\",\"id\":\"right-eye\",\"inputs\":[\"abf23614-52c6-4ac9-a73b-a82dbebae411\"]},{\"filter\":\"Delay\",\"id\":\"abf23614-52c6-4ac9-a73b-a82dbebae411\",\"inputs\":[\"dbfa8ad8-9f46-4d23-8fc8-f7d3f87c08a8\"],\"options\":{\"framesToDelay\":3.0512},\"outputs\":[\"right-eye\"]}]"
             
-            let filter = OperationGroup.init(withJson: skittle)
+            let filter = OperationGroup.init(withJson: sumie)
             camera --> filter --> renderView
             camera.startCapture()
             
@@ -109,6 +109,13 @@ extension OperationNode {
                 let actualUniformName = findClosestKeyTo(key: uniformName, in: uniforms)
 
                 op.uniformSettings[ actualUniformName ] = uniformValue as? Float
+                
+                
+                let uniformValueArray = uniformValue as? [Any]
+
+                if let r = uniformValueArray?[0] as? Float, let g = uniformValueArray?[1] as? Float, let b = uniformValueArray?[2] as? Float {
+                    op.uniformSettings[ uniformName ] = Color(red: r, green: g, blue: b)
+                }
 
                 print( className! + ":" + actualUniformName, uniformValue )
             }
@@ -118,7 +125,7 @@ extension OperationNode {
     }
     
     private func findClosestKeyTo(key inputKey: String, in dictionary: [String: Any]) -> String {
-        for (key, value) in dictionary {
+        for (key, _) in dictionary {
             if key.contains(inputKey) { return key }
         }
         
