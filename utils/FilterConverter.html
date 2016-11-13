@@ -35,7 +35,7 @@ GPUImageJSON style.
 
     var db = firebase.database().ref('filters')
     db.once('value', (snapshot) => {
-      var first = snapshot.val()['07 Borderlands 3D']
+      var first = snapshot.val()['14 Lucy 3D']
       var pipeline = new FilterPipeline( first )
       console.log( 'new', pipeline.asCode() )
     })

@@ -1,13 +1,18 @@
 var FilterNameMap = {
   Bilateral: 'BilateralBlur',
-  Exposure: 'ExposureAdjustment',
-  Hue: 'HueAdjustment',
-  Gamma: 'GammaAdjustment',
+  ColorInvert: 'ColorInversion',
   LowPass: 'LowPassFilter',
-  RGB: 'RGBAdjustment',
-  ColorInvert: 'ColorInversion'
-}
 
+  Brightness: 'BrightnessAdjustment',
+  Contrast: 'ContrastAdjustment',
+  Exposure: 'ExposureAdjustment',
+  Gamma: 'GammaAdjustment',
+  Hue: 'HueAdjustment',
+  Levels: 'LevelsAdjustment',
+  Opacity: 'OpacityAdjustment',
+  RGB: 'RGBAdjustment',
+  Saturation: 'SaturationAdjustment'
+}
 
 class FilterNode {
   constructor( json ) {
@@ -22,6 +27,18 @@ class FilterNode {
       name = mappedName !== undefined ? mappedName : name
 
       json.filter = name
+    }
+
+    if (json.options) {
+      var options = {}
+
+      // Rename filterStrength -> strength, and filterColor -> color
+      _(json.options).forEach( (value, key ) => {
+        key = key.replace(/filter[A-Z]/, pre => { return pre[pre.length-1].toLowerCase() })
+        options[key] = value
+      })
+
+      json.options = options
     }
 
     this.json = json
