@@ -108,54 +108,42 @@ extension OperationNode {
         
         self.options?.forEach{ uniformName, uniformValue in
             
-            var op: AnyObject? 
+            var operation: AnyObject?
+            var didFindUniform = false
             
             switch self.operation {
-            case is BasicOperation:
-                op = self.operation as? BasicOperation
-            case is OperationGroup:
-                op = self.operation as? OperationGroup
-            default:
-                op = nil
+            case is BasicOperation: operation = self.operation as? BasicOperation
+            case is OperationGroup: operation = self.operation as? OperationGroup
+            default: operation = nil
             }
             
             
-            if op != nil {
+            if operation != nil {
                 
                 if let uniformValue = uniformValue as? Float {
                     
-                    var didFindUniform = false
-                    
-                    print( ">", uniformName, uniformValue )
-                    
-                    let opMirror = Mirror.init(reflecting: op!)
+//                    print( ">", uniformName, uniformValue )
+                    let opMirror = Mirror.init(reflecting: operation!)
                     opMirror.children.forEach{ key, _ in
-                        print("key", key)
                         if key == uniformName {
-                            op?.setValue( uniformValue, forKey: uniformName )
-                            print( " ", uniformName, "->", uniformValue )
+//                            print( " ", uniformName, "->", uniformValue )
+                            operation?.setValue( uniformValue, forKey: uniformName )
                             didFindUniform = true
                         }
                     }
                     
-                    if !didFindUniform { print( "  A UNKNOWN UNIFORM:", uniformName, "FOR", className) }
-
+                    if !didFindUniform { print( "  UNKNOWN UNIFORM:", uniformName, "FOR", className) }
                 }
-                
                 
                 let uniformValueArray = uniformValue as? [Any]
-                let o = op as? BasicOperation
-
-                if let r = uniformValueArray?[0] as? Float, let g = uniformValueArray?[1] as? Float, let b = uniformValueArray?[2] as? Float {
-                    o?.uniformSettings[ uniformName ] = Color(red: r, green: g, blue: b)
-                   
+                
+                if let basicOperation = operation as? BasicOperation,
+                    let r = uniformValueArray?[0] as? Float,
+                    let g = uniformValueArray?[1] as? Float,
+                    let b = uniformValueArray?[2] as? Float {
+                    basicOperation.uniformSettings[ uniformName ] = Color(red: r, green: g, blue: b)
                 }
 
-            }
-        
-            
-            else {
-                print("-----> UNKNOWN FILTER:", className )
             }
             
         }
