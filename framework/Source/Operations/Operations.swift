@@ -90,6 +90,7 @@ public class Operations {
         case "PolkaDot": return PolkaDot()
         case "Posterize": return Posterize()
         case "PrewittEdgeDetection": return PrewittEdgeDetection()
+        case "RGBAdjustment": return RGBAdjustment()
         case "SaturationAdjustment": return SaturationAdjustment()
         case "SaturationBlend": return SaturationBlend()
         case "ScreenBlend": return ScreenBlend()
