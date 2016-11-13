@@ -108,7 +108,19 @@ extension OperationNode {
         
         self.options?.forEach{ uniformName, uniformValue in
             
-            if let op = self.operation as? BasicOperation {
+            var op: AnyObject? 
+            
+            switch self.operation {
+            case is BasicOperation:
+                op = self.operation as? BasicOperation
+            case is OperationGroup:
+                op = self.operation as? OperationGroup
+            default:
+                op = nil
+            }
+            
+            
+            if op != nil {
                 
                 if let uniformValue = uniformValue as? Float {
                     
@@ -116,10 +128,11 @@ extension OperationNode {
                     
                     print( ">", uniformName, uniformValue )
                     
-                    let opMirror = Mirror.init(reflecting: op)
+                    let opMirror = Mirror.init(reflecting: op!)
                     opMirror.children.forEach{ key, _ in
+                        print("key", key)
                         if key == uniformName {
-                            op.setValue( uniformValue, forKey: uniformName )
+                            op?.setValue( uniformValue, forKey: uniformName )
                             print( " ", uniformName, "->", uniformValue )
                             didFindUniform = true
                         }
@@ -131,29 +144,15 @@ extension OperationNode {
                 
                 
                 let uniformValueArray = uniformValue as? [Any]
+                let o = op as? BasicOperation
 
                 if let r = uniformValueArray?[0] as? Float, let g = uniformValueArray?[1] as? Float, let b = uniformValueArray?[2] as? Float {
-                    op.uniformSettings[ uniformName ] = Color(red: r, green: g, blue: b)
+                    o?.uniformSettings[ uniformName ] = Color(red: r, green: g, blue: b)
                    
                 }
 
             }
-            
-            else if let op = self.operation as? OperationGroup {
-                print( "-", uniformName, uniformValue )
-                
-                var didFindUniform = false
-                let opMirror = Mirror.init(reflecting: op)
-                opMirror.children.forEach{ key, _ in
-                    if( key == uniformName ) {
-                        op.setValue( uniformValue, forKey: uniformName )
-                        didFindUniform = true
-                    }
-                }
-                
-                if !didFindUniform { print( "-----> B UNKNOWN UNIFORM:", uniformName, "FOR", className) }
-                
-            }
+        
             
             else {
                 print("-----> UNKNOWN FILTER:", className )
