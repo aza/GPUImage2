@@ -1,0 +1,44 @@
+<!--
+
+This script converts old-style Elsewhere JSON filter definitions to new style
+GPUImageJSON style.
+
+-->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Converter</title>
+
+
+    <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBhuPOZpTWx_TB0ewOfG_adfCSI-0igsAQ",
+        authDomain: "glasses.firebaseapp.com",
+        databaseURL: "https://glasses.firebaseio.com",
+        storageBucket: "firebase-glasses.appspot.com",
+        messagingSenderId: "1062238147486"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </head>
+  <body>
+    <h1>see console</h1>
+
+    <script src="FilterConverter.js"></script>
+    <script>
+
+    var db = firebase.database().ref('filters')
+    db.once('value', (snapshot) => {
+      var first = snapshot.val()['01 Skittle Vision 3D']
+      var pipeline = new FilterPipeline( first )
+      console.log( 'new', pipeline.asCode() )
+    })
+    </script>
+  </body>
+</html>
