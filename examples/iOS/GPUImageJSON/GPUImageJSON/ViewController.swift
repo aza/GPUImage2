@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             
             let test = "[{\"id\":\"camera\",\"outputs\":[\"f34a6962-4e75-46f1-bd02-e5471253b6ce\",\"46d65801-f08a-4c73-b8ca-6e7d0edbcd88\"]},{\"filter\":\"LeftEye\",\"id\":\"left-eye\",\"inputs\":[\"14687d28-6a53-4dda-be4f-054338306f32\"]},{\"filter\":\"RightEye\",\"id\":\"right-eye\",\"inputs\":[\"908fdb32-75bf-4716-8601-08801453e034\"]},{\"filter\":\"BilateralBlur\",\"id\":\"f7342b0e-1a22-411c-b516-97a56713d830\",\"inputs\":[\"f34a6962-4e75-46f1-bd02-e5471253b6ce\"],\"options\":{\"distanceNormalizationFactor\":8,\"texelSpacingMultiplier\":4},\"outputs\":[\"6a592d31-2a3c-48ae-a605-4c380d03af2d\"]},{\"filter\":\"BilateralBlur\",\"id\":\"f34a6962-4e75-46f1-bd02-e5471253b6ce\",\"inputs\":[\"camera\"],\"options\":{\"distanceNormalizationFactor\":8,\"texelSpacingMultiplier\":4},\"outputs\":[\"f7342b0e-1a22-411c-b516-97a56713d830\"]},{\"filter\":\"DivideBlend\",\"id\":\"6a592d31-2a3c-48ae-a605-4c380d03af2d\",\"inputs\":[\"f7342b0e-1a22-411c-b516-97a56713d830\",\"46d65801-f08a-4c73-b8ca-6e7d0edbcd88\"],\"outputs\":[\"e19e5cde-f912-4676-9f32-30865a846c77\"]},{\"filter\":\"ColorInversion\",\"id\":\"7f06f49d-7a83-4dfb-8a7e-044c784e705f\",\"inputs\":[\"e19e5cde-f912-4676-9f32-30865a846c77\"],\"outputs\":[\"fcac2260-58c6-4636-ac7d-bf7bf7579800\"]},{\"filter\":\"ExposureAdjustment\",\"id\":\"e19e5cde-f912-4676-9f32-30865a846c77\",\"inputs\":[\"6a592d31-2a3c-48ae-a605-4c380d03af2d\"],\"options\":{\"exposure\":-0.0667},\"outputs\":[\"7f06f49d-7a83-4dfb-8a7e-044c784e705f\"]},{\"filter\":\"SaturationAdjustment\",\"id\":\"14687d28-6a53-4dda-be4f-054338306f32\",\"inputs\":[\"1bfbf5a1-be19-4999-8a31-47ffd0a985b5\"],\"options\":{\"saturation\":1.831},\"outputs\":[\"left-eye\",\"908fdb32-75bf-4716-8601-08801453e034\"]},{\"filter\":\"SaturationAdjustment\",\"id\":\"fcac2260-58c6-4636-ac7d-bf7bf7579800\",\"inputs\":[\"7f06f49d-7a83-4dfb-8a7e-044c784e705f\"],\"options\":{\"saturation\":1.8228},\"outputs\":[\"2eb5c5a1-f229-422f-b036-57f4ada0417d\"]},{\"filter\":\"LowPassFilter\",\"id\":\"1bfbf5a1-be19-4999-8a31-47ffd0a985b5\",\"inputs\":[\"63184475-3c04-4aa6-95e8-c2b30e810791\"],\"options\":{\"strength\":0.1034},\"outputs\":[\"14687d28-6a53-4dda-be4f-054338306f32\"]},{\"filter\":\"ZoomBlur\",\"id\":\"46d65801-f08a-4c73-b8ca-6e7d0edbcd88\",\"inputs\":[\"camera\"],\"options\":{\"blurSize\":0.4032},\"outputs\":[\"6a592d31-2a3c-48ae-a605-4c380d03af2d\"]},{\"filter\":\"LowPassFilter\",\"id\":\"63184475-3c04-4aa6-95e8-c2b30e810791\",\"inputs\":[\"2eb5c5a1-f229-422f-b036-57f4ada0417d\"],\"options\":{\"strength\":0.1034},\"outputs\":[\"1bfbf5a1-be19-4999-8a31-47ffd0a985b5\"]},{\"filter\":\"LowPassFilter\",\"id\":\"2eb5c5a1-f229-422f-b036-57f4ada0417d\",\"inputs\":[\"fcac2260-58c6-4636-ac7d-bf7bf7579800\"],\"options\":{\"strength\":0.1207},\"outputs\":[\"63184475-3c04-4aa6-95e8-c2b30e810791\"]},{\"filter\":\"Delay\",\"id\":\"908fdb32-75bf-4716-8601-08801453e034\",\"inputs\":[\"14687d28-6a53-4dda-be4f-054338306f32\"],\"options\":{\"framesToDelay\":4.2661},\"outputs\":[\"right-eye\"]}]"
             
-            let filter = OperationGroup.init(withJson: test)
+            let filter = OperationGroup.init(withJson: sumie)
             camera --> filter --> renderView
             camera.startCapture()
             
@@ -121,7 +121,7 @@ extension OperationNode {
                     op.uniformSettings[ uniformName ] = Color(red: r, green: g, blue: b)
                 }
 
-                print( className! + ":" + actualUniformName, uniformValue )
+                // print( className! + ":" + actualUniformName, uniformValue )
             }
             
             else if let op = self.operation as? OperationGroup {
@@ -135,9 +135,7 @@ extension OperationNode {
                     }
                 }
                 
-                didFindUniform ?
-                    print( className! + ":" + uniformName, uniformValue ) :
-                    print( "-----> UNKNOWN UNIFORM:", uniformName)
+                if !didFindUniform { print( "-----> UNKNOWN UNIFORM:", uniformName, "FOR", className) }
                 
             }
             
@@ -153,7 +151,7 @@ extension OperationNode {
         for (key, _) in dictionary {
             if key.contains(inputKey) { return key }
         }
-        print("-----> UNKNOWN UNIFORM:", inputKey)
+        print("-----> UNKNOWN UNIFORM:", inputKey, "FOR", self.className)
         
         return inputKey
     }
